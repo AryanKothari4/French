@@ -1,0 +1,45 @@
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.slider {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.slider.on {
+  transform: translateX(20px);
+  background-color: var(--primary-blue);
+}
+
+.switch:active .slider {
+  width: 20px; /* Slight stretch on click */
+}
+
+/* Dark mode adjustments for switch */
+body.dark-mode .switch {
+  background-color: #555;
+}
+body.dark-mode .slider.on {
+  background-color: var(--primary-blue);
+}

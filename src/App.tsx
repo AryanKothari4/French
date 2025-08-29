@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
+import Header from "./components/layout/Header/Header";
+import MainContent from "./components/layout/MainContent/MainContent";
+import SettingsModal from "./components/SettingsModal/SettingsModal";
+import {
+  AppSettingsProvider,
+  useAppSettings,
+} from "./contexts/AppSettingsContext";
+import greetingsVocab from "./data/vocab-lists/greetings"; // Only import the default vocab list
+import type { VocabList } from "./types/vocab";
 
-function App() {
-  const [count, setCount] = useState(0)
+// AppWrapper handles context and theme application
+const AppWrapper: React.FC = () => {
+  const { settings } = useAppSettings();
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+  const [selectedVocabList, setSelectedVocabList] =
+    useState<VocabList>(greetingsVocab); // Default and only list for MVP
+
+  // Effect to apply theme class to body
+  useEffect(() => {
+    document.body.className =
+      settings.theme === "dark" ? "dark-mode" : "light-mode";
+  }, [settings.theme]);
+
+  // For MVP, this function is simplified as there's only one list
+  const handleSelectVocabList = (listName: string) => {
+    if (listName === "Greetings") {
+      setSelectedVocabList(greetingsVocab);
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header
+        onSelectVocabList={handleSelectVocabList}
+        onToggleSettings={() => setIsSettingsModalOpen(true)}
+      />
+      <MainContent selectedVocabList={selectedVocabList} />
+      <SettingsModal
+        isOpen={isSettingsModalOpen}
+        onClose={() => setIsSettingsModalOpen(false)}
+      />
     </>
-  )
-}
+  );
+};
 
-export default App
+// App component provides the context
+const App: React.FC = () => {
+  return (
+    <AppSettingsProvider>
+      <AppWrapper />
+    </AppSettingsProvider>
+  );
+};
+
+export default App;
