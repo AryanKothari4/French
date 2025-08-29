@@ -1,10 +1,13 @@
+/* src/components/SettingsModal/SettingsModal.module.css */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  /* --- Change for Point 5: Blur the background, not the modal content --- */
+  backdrop-filter: blur(5px); /* Apply blur here */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +20,16 @@
   width: 90%;
   max-width: 500px;
   position: relative;
-  color: inherit;
+  /* --- Change for Point 5: Solid background for modal content --- */
+  background-color: white; /* Solid white for light mode */
+  border: 1px solid #ccc; /* Simple border for light mode */
+  color: var(--light-text); /* Ensure text color is readable */
+}
+
+body.dark-mode .modalContent {
+  background-color: #333; /* Dark solid background for dark mode */
+  border: 1px solid #555; /* Darker border for dark mode */
+  color: var(--dark-text); /* Ensure text color is readable */
 }
 
 .modalContent h2 {

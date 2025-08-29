@@ -1,3 +1,4 @@
+// src/components/SettingsModal/SettingsModal.tsx
 import React from "react";
 import styles from "./SettingsModal.module.css";
 import { useAppSettings } from "../../contexts/AppSettingsContext";
@@ -27,10 +28,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      <div
-        className={`${styles.modalContent} glass-effect`}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        {" "}
+        {/* Removed glass-effect here */}
         <h2>Settings</h2>
         <ToggleSwitch
           label="Dark Mode"

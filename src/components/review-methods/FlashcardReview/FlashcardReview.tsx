@@ -1,6 +1,7 @@
+// src/components/review-methods/FlashcardReview/FlashcardReview.tsx
 import React, { useState } from "react";
 import styles from "./FlashcardReview.module.css";
-import type { VocabList } from "../../../types/vocab";
+import { type VocabList } from "../../../types/vocab";
 import { useAppSettings } from "../../../contexts/AppSettingsContext";
 import Flashcard from "./Flashcard";
 
@@ -32,6 +33,9 @@ const FlashcardReview: React.FC<FlashcardReviewProps> = ({ vocabList }) => {
 
   return (
     <div className={styles.flashcardReview}>
+      <p className={styles.progress}>
+        {currentIndex + 1} / {vocabList.length}
+      </p>
       <Flashcard
         english={currentItem.english}
         french={currentItem.french}
@@ -45,9 +49,6 @@ const FlashcardReview: React.FC<FlashcardReviewProps> = ({ vocabList }) => {
           Next
         </button>
       </div>
-      <p className={styles.progress}>
-        {currentIndex + 1} / {vocabList.length}
-      </p>
     </div>
   );
 };

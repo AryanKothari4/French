@@ -1,33 +1,45 @@
+/* src/styles/globals.css */
 :root {
-  --primary-blue: #007bff;
-  --light-bg: #e0f2f7; /* Very light blue */
-  --dark-bg: #1a202c;  /* Dark charcoal */
-  --light-card-bg: rgba(255, 255, 255, 0.2);
-  --dark-card-bg: rgba(0, 0, 0, 0.2);
-  --light-text: #333;
-  --dark-text: #f0f0f0;
-  --glass-border-light: rgba(255, 255, 255, 0.18);
-  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --primary-blue: #046ee0; /* Your existing change */
+  --light-bg: #99e0f3; /* Your existing change */
+  --dark-bg: #1a202e;  /* Your existing change */
+  
+  --light-glass-bg-opacity: 0.2; /* Your existing change */
+  --dark-glass-bg-opacity: 0.2;  /* Your existing change */
+  --light-glass-border-opacity: 0.18; /* Your existing change */
+  --dark-glass-border-opacity: 0.1; /* Your existing change */
+
+  --light-card-bg: rgba(255, 255, 255, var(--light-glass-bg-opacity)); /* Your existing change */
+  --dark-card-bg: rgba(0, 0, 0, var(--dark-glass-bg-opacity)); /* Your existing change */
+  --glass-border-light: rgba(255, 255, 255, var(--light-glass-border-opacity)); /* Your existing change */
+  --glass-border-dark: rgba(255, 255, 255, var(--dark-glass-border-opacity)); /* Your existing change */
+
+  --light-text: #333; /* Your existing change */
+  --dark-text: #f0f0f0; /* Your existing change */
+}
+
+* {
+  box-sizing: border-box; /* Your existing change */
 }
 
 /* Light Mode */
 body.light-mode {
-  background: linear-gradient(135deg, var(--light-bg) 0%, #a7d9f7 100%);
-  color: var(--light-text);
+  background: linear-gradient(135deg, var(--light-bg) 0%, #a7d9f7 100%); /* Your existing change */
+  color: var(--light-text); /* Your existing change */
 }
 body.light-mode .glass-effect {
-  background-color: var(--light-card-bg);
-  border: 1px solid var(--glass-border-light);
+  background-color: var(--light-card-bg); /* Your existing change */
+  border: 1px solid var(--glass-border-light); /* Your existing change */
 }
 
 /* Dark Mode */
 body.dark-mode {
-  background: linear-gradient(135deg, var(--dark-bg) 0%, #303f56 100%);
-  color: var(--dark-text);
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #303f56 100%); /* Your existing change */
+  color: var(--dark-text); /* Your existing change */
 }
 body.dark-mode .glass-effect {
-  background-color: var(--dark-card-bg);
-  border: 1px solid var(--glass-border-dark);
+  background-color: var(--dark-card-bg); /* Your existing change */
+  border: 1px solid var(--glass-border-dark); /* Your existing change */
 }
 
 body {
@@ -48,8 +60,8 @@ body {
 }
 
 .glass-effect {
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  border-radius: 10px;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(20px); /* Your existing change */
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.40); /* Your existing change */
+  border-radius: 10px; /* Your existing change */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Your existing change */
 }

@@ -1,7 +1,10 @@
+/* src/components/review-methods/FlashcardReview/Flashcard.module.css */
 .flashcardContainer {
-  width: 300px;
-  height: 200px;
-  perspective: 1000px; /* For 3D flip effect */
+  width: 400px; /* Your existing change */
+  height: 235px; /* Your existing change */
+  margin-bottom: -5px; /* Your existing change */
+  
+  perspective: 1000px;
   cursor: pointer;
 }
 
@@ -12,10 +15,10 @@
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  display: flex; /* For centering content */
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 2rem; /* Your existing change */
   padding: 20px;
 }
 
@@ -27,18 +30,48 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Hide the back of the front side */
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px; /* Inherit from glass-effect */
+  border-radius: 10px;
 }
 
+/* --- Explicit styles for LIGHT MODE (default) on the front face --- */
 .flashcardFront {
-  /* Front side default styling */
+  background-color: var(--light-card-bg);
+}
+/* Explicitly target the span for color in light mode */
+.flashcardFront span {
+  color: var(--primary-blue); /* Dark blue text for light mode */
 }
 
+
+/* --- Explicit styles for LIGHT MODE (default) on the back face --- */
 .flashcardBack {
   transform: rotateY(180deg);
+  background-color: var(--light-card-bg);
+}
+/* Explicitly target the span for color in light mode */
+.flashcardBack span {
+  color: var(--primary-blue); /* Dark blue text for light mode */
+}
+
+/* --- Overrides for DARK MODE on the front face --- */
+body.dark-mode .flashcardFront {
+  background-color: var(--dark-card-bg);
+}
+/* Explicitly target the span for color in dark mode */
+body.dark-mode .flashcardFront span {
+  color: var(--dark-text); /* White text for dark mode */
+}
+
+/* --- Overrides for DARK MODE on the back face --- */
+body.dark-mode .flashcardBack {
+  background-color: var(--dark-card-bg);
+}
+/* Explicitly target the span for color in dark mode */
+body.dark-mode .flashcardBack span {
+  color: var(--dark-text); /* White text for dark mode */
 }
